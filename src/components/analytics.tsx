@@ -25,7 +25,7 @@ function download(text: string, filename: string, type: string) {
 
 function Chart({ data, value, label, color = "#0067A5" }: { data: Record<string, string | number | null>[]; value: string; label: string; color?: string }) {
   if (!data.length) return <p className="py-8 text-sm text-[#56606B]">No records in this cohort.</p>;
-  return <div className="mt-4 h-52 w-full min-w-0" role="group" aria-label={label}>
+  return <div className="analytics-chart" role="group" aria-label={label}>
     <ResponsiveContainer width="100%" height="100%" minWidth={0}>
       <BarChart data={data} layout="vertical" margin={{ left: 6, right: 20, top: 8, bottom: 8 }} accessibilityLayer>
         <CartesianGrid stroke="#E2E4E7" horizontal={false} />

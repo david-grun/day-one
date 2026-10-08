@@ -117,20 +117,30 @@ export default function Workspace({ initialData, initialPath }: { initialData: W
     if (modal || busy) return;
     const controller = new AbortController();
     let running = false;
+    let consecutiveFailures = 0;
+    let retryTimer: number | undefined;
     async function refreshVisibleWorkspace() {
       if (document.visibilityState !== "visible" || running) return;
       running = true;
       try {
         await refresh(false, controller.signal);
-        if (!controller.signal.aborted) setNotice((current) => current?.source === "connection" ? null : current);
-      } catch (cause) {
-        if (!controller.signal.aborted) setNotice({ message: `Automatic refresh paused. ${cause instanceof Error ? cause.message : "Check the connection and refresh the workspace."}`, error: true, source: "connection" });
+        if (!controller.signal.aborted) {
+          consecutiveFailures = 0;
+          setNotice((current) => current?.source === "connection" ? null : current);
+        }
+      } catch {
+        if (!controller.signal.aborted) {
+          consecutiveFailures += 1;
+          if (consecutiveFailures === 1) retryTimer = window.setTimeout(refreshVisibleWorkspace, 5_000);
+          else setNotice({ message: "Live updates paused. Use Refresh to reconnect.", error: true, source: "connection" });
+        }
       } finally { running = false; }
     }
     const interval = window.setInterval(refreshVisibleWorkspace, 60_000);
     document.addEventListener("visibilitychange", refreshVisibleWorkspace);
     return () => {
       controller.abort();
+      if (retryTimer) window.clearTimeout(retryTimer);
       window.clearInterval(interval);
       document.removeEventListener("visibilitychange", refreshVisibleWorkspace);
     };

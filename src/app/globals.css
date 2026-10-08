@@ -67,6 +67,7 @@ svg { flex-shrink: 0; }
 .app-shell { min-height: 100dvh; width: 100%; max-width: 1756px; margin: 0 auto; padding: 12px; display: flex; align-items: flex-start; gap: 12px; }
 .sidebar > * { flex-shrink: 0; }
 .sidebar { position: sticky; top: 12px; z-index: 40; width: var(--sidebar-width); height: calc(100dvh - 24px); flex: 0 0 var(--sidebar-width); background: var(--surface); border: 1px solid rgb(255 255 255 / 75%); border-radius: var(--radius); box-shadow: var(--shadow-surface); padding: 18px 12px 14px; display: flex; flex-direction: column; overflow-y: auto; scrollbar-width: thin; }
+.desktop-sidebar { margin-left: clamp(20px,3vw,44px); }
 .brand { display: flex; align-items: center; gap: 10px; padding: 0 4px; font-size: 24px; font-weight: 700; line-height: 1.25; letter-spacing: -.8px; }
 .brand-mark { display: grid; place-items: center; background: var(--text); color: white; width: 41px; height: 43px; border-radius: 11px; }
 .company-switch { display: flex; align-items: center; gap: 10px; margin: 18px 0 16px; padding: 11px 9px; border: 1px solid var(--border); background: #f8f9fa; border-radius: 9px; }

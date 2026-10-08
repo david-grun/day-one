@@ -23,15 +23,15 @@ function download(text: string, filename: string, type: string) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-function Chart({ data, value, label, color = "#006FA6" }: { data: Record<string, string | number | null>[]; value: string; label: string; color?: string }) {
+function Chart({ data, value, label, color = "#0067A5" }: { data: Record<string, string | number | null>[]; value: string; label: string; color?: string }) {
   if (!data.length) return <p className="py-8 text-sm text-[#56606B]">No records in this cohort.</p>;
   return <div className="mt-4 h-52 w-full min-w-0" role="group" aria-label={label}>
     <ResponsiveContainer width="100%" height="100%" minWidth={0}>
       <BarChart data={data} layout="vertical" margin={{ left: 6, right: 20, top: 8, bottom: 8 }} accessibilityLayer>
-        <CartesianGrid stroke="#D7E1E7" horizontal={false} />
-        <XAxis type="number" tick={{ fill: "#485867", fontSize: 12 }} domain={value === "completion" ? [0, 100] : [0, "auto"]} allowDecimals={value !== "overdue"} />
-        <YAxis type="category" dataKey="name" width={140} tick={{ fill: "#17212B", fontSize: 14 }} tickLine={false} axisLine={false} />
-        <Tooltip isAnimationActive={false} cursor={{ fill: "#E1F3F8" }} />
+        <CartesianGrid stroke="#E2E4E7" horizontal={false} />
+        <XAxis type="number" tick={{ fill: "#56606B", fontSize: 12 }} domain={value === "completion" ? [0, 100] : [0, "auto"]} allowDecimals={value !== "overdue"} />
+        <YAxis type="category" dataKey="name" width={140} tick={{ fill: "#20242A", fontSize: 14 }} tickLine={false} axisLine={false} />
+        <Tooltip isAnimationActive={false} cursor={{ fill: "#EAF4FA" }} />
         <Bar dataKey={value} name={label} fill={color} radius={[0, 3, 3, 0]} isAnimationActive={false} barSize={20} />
       </BarChart>
     </ResponsiveContainer>
@@ -86,8 +86,8 @@ export function Analytics({ data }: { data: WorkspacePayload }) {
   return <section className="analytics-workspace">
     <div className="page-heading"><div><h1>Analytics</h1></div></div>
     <div className="flex flex-wrap gap-2" role="group" aria-label="Analytics view">
-      <button type="button" onClick={() => updateFilters({ view: "operational" })} aria-pressed={tab === "operational"} className={`${action} ${tab === "operational" ? "!border-[#006FA6] !bg-[#006FA6] !text-white" : ""}`}>Operational analytics</button>
-      <button type="button" onClick={() => updateFilters({ view: "powerbi" })} aria-pressed={tab === "powerbi"} className={`${action} ${tab === "powerbi" ? "!border-[#006FA6] !bg-[#006FA6] !text-white" : ""}`}>Power BI report</button>
+      <button type="button" onClick={() => updateFilters({ view: "operational" })} aria-pressed={tab === "operational"} className={`${action} ${tab === "operational" ? "!border-[#20242A] !bg-[#20242A] !text-white" : ""}`}>Operational analytics</button>
+      <button type="button" onClick={() => updateFilters({ view: "powerbi" })} aria-pressed={tab === "powerbi"} className={`${action} ${tab === "powerbi" ? "!border-[#20242A] !bg-[#20242A] !text-white" : ""}`}>Power BI report</button>
     </div>
     {tab === "operational" ? <>
       <div className={`${panel} analytics-filterbar`}>

@@ -79,4 +79,4 @@ The owner changed the interface to SF Mono. The app and Power BI theme request t
 
 The SF Mono-first and reduced-density pass completed lint, TypeScript, a production build, and the read-only restart/persistence page check successfully.
 
-The later high-contrast theme and concise-copy pass also passed lint, TypeScript, a production build, and the read-only restart/persistence page check. The browser inventory was still empty, so the charcoal sidebar, blue active states, panel contrast, responsive layouts, and copy density remain to be inspected in a real browser.
+The owner later rolled back the dark/blue theme while retaining the concise-copy pass. Lint, TypeScript, the production build and the read-only restart/persistence page check passed. The restored white sidebar, white panels, graphite controls, responsive layouts and copy density remain to be inspected in a real browser.

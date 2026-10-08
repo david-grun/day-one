@@ -4,9 +4,9 @@ Updated 8 October 2026 after local implementation and verification. This records
 
 ## Latest design refinement
 
-**Latest contrast direction:** the owner supplied three HR dashboard references and requested a cleaner, more readable theme. Shared tokens now use a charcoal sidebar, bright blue active navigation/actions, a cool blue-gray canvas, crisp white panels, stronger borders and table headers, and a saturated first summary card. The responsive structure remains.
+**Latest theme decision:** the owner rolled back the dark/blue dashboard treatment. The current interface restores the earlier white sidebar and panels, soft neutral canvas, graphite active controls, restrained status colors, rounded cards and subtle shadow outlines. Keep the responsive structure.
 
-The contrast, SF Mono-first, and reduced-density changes passed lint, TypeScript, the production build, and the read-only restart/persistence page check. The production app was left running at `http://localhost:3000`. Browser automation remained unavailable, so visual inspection across viewport sizes is still a manual check.
+The white-theme rollback keeps SF Mono-first typography and the reduced-density copy. It passed lint, TypeScript, the production build and the read-only restart/persistence page check. The app was left running at `http://localhost:3000`. Browser automation remained unavailable, so visual inspection across viewport sizes is still a manual check.
 
 **Latest copy decision:** the owner requested only necessary, non-repetitive screen text. Page headings and summary cards are concise; repeated sidebar/footer explanations and marketing copy are removed. Overview queues show at most three records and link to their full views. Demo accounts/scenarios, chart data tables and Power BI setup/refresh guidance use native expandable sections. Keep task context, evidence, review eligibility, errors and correction/cancellation consequences.
 

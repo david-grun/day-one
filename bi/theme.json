@@ -1,36 +1,36 @@
 {
   "name": "DayOne",
   "dataColors": [
-    "#006FA6",
-    "#485867",
+    "#0067A5",
+    "#56606B",
     "#167447",
     "#855500",
     "#B42318",
-    "#17212B"
+    "#20242A"
   ],
-  "background": "#EDF4F6",
-  "foreground": "#17212B",
-  "tableAccent": "#006FA6",
+  "background": "#F4F5F6",
+  "foreground": "#20242A",
+  "tableAccent": "#0067A5",
   "textClasses": {
     "callout": {
       "fontFace": "SF Mono",
       "fontSize": 28,
-      "color": "#17212B"
+      "color": "#20242A"
     },
     "title": {
       "fontFace": "SF Mono",
       "fontSize": 16,
-      "color": "#17212B"
+      "color": "#20242A"
     },
     "header": {
       "fontFace": "SF Mono",
       "fontSize": 14,
-      "color": "#17212B"
+      "color": "#20242A"
     },
     "label": {
       "fontFace": "SF Mono",
       "fontSize": 12,
-      "color": "#485867"
+      "color": "#56606B"
     }
   }
 }

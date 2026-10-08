@@ -36,7 +36,7 @@ async function main() {
   const loginPage = await fetch(`${origin}/login`);
   assert.equal(loginPage.status, 200);
   const markup = await loginPage.text();
-  assert.ok(markup.includes("Welcome to DayOne") && markup.includes("Try a demo account"), "production HTML includes the sign-in experience");
+  assert.ok(markup.includes('type="password"') && /autocomplete="username"/i.test(markup) && markup.includes("Demo accounts"), "production HTML includes the sign-in experience");
   const hr = await signIn("mara");
   const data = await workspace(hr);
   if (process.argv.includes("--persistence-only")) {

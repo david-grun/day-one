@@ -146,11 +146,10 @@ svg { flex-shrink: 0; }
 .panel-link { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding: 12px var(--panel-padding); font-size: var(--type-control); color: var(--accent); font-weight: 500; }
 .panel-link:hover { background: #f5fafc; }
 .panel-copy { padding: 0 var(--panel-padding) var(--panel-padding); font-size: var(--type-control); color: var(--secondary); }
-.summary-strip { display: grid; grid-template-columns: minmax(0,1fr); margin-bottom: var(--grid-gap); background: var(--surface); border: 1px solid rgb(255 255 255 / 75%); border-radius: var(--radius); box-shadow: var(--shadow-surface); overflow: hidden; }
-.summary-item { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 16px; min-width: 0; padding: 14px 16px; border-top: 1px solid var(--border); }
-.summary-item:first-child { border-top: 0; }
+.summary-strip { display: grid; grid-template-columns: minmax(0,1fr); gap: var(--grid-gap); margin-bottom: var(--grid-gap); }
+.summary-item { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 18px; min-width: 0; min-height: 86px; padding: 16px; background: var(--surface); border: 1px solid rgb(255 255 255 / 75%); border-radius: var(--radius); box-shadow: var(--shadow-surface); }
 .summary-item:hover { background: #f7fafb; }
-.summary-item > span { color: var(--secondary); font-size: var(--type-control); }
+.summary-item > span { color: var(--secondary); font-size: var(--type-control); line-height: 1.4; }
 .summary-item strong { font-size: var(--type-metric); letter-spacing: -1px; line-height: 1.15; font-variant-numeric: tabular-nums; font-weight: 600; }
 .overview-column { display: grid; gap: var(--grid-gap); align-content: start; min-width: 0; }
 .overview-grid { display: grid; grid-template-columns: minmax(0,1fr); gap: var(--grid-gap); align-items: start; }
@@ -420,18 +419,13 @@ tbody tr:hover { background: #fdfdfc; }
 
 /* Layout follows available content width, including when the sidebar changes. */
 @container workspace (min-width: 360px) {
-  .analytics-kpis, .hire-facts { grid-template-columns: repeat(2,minmax(0,1fr)); }
-}
-@container workspace (min-width: 560px) {
-  .summary-strip { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .summary-item:nth-child(-n+2) { border-top: 0; }
-  .summary-item:nth-child(odd) { border-right: 1px solid var(--border); }
+  .summary-strip, .analytics-kpis, .hire-facts { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
 @container workspace (min-width: 740px) {
   .hire-facts { grid-template-columns: repeat(4,minmax(0,1fr)); }
 }
 @container workspace (min-width: 800px) {
-  .analytics-kpis { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  .summary-strip, .analytics-kpis { grid-template-columns: repeat(4,minmax(0,1fr)); }
 }
 @container workspace (min-width: 860px) {
   .overview-grid { grid-template-columns: minmax(0,1.6fr) minmax(280px,1fr); }

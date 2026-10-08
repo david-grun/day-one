@@ -8,27 +8,27 @@
     "#B42318",
     "#20242A"
   ],
-  "background": "#F1F2F0",
+  "background": "#F4F5F6",
   "foreground": "#20242A",
   "tableAccent": "#0067A5",
   "textClasses": {
     "callout": {
-      "fontFace": "Segoe UI",
+      "fontFace": "JetBrains Mono",
       "fontSize": 28,
       "color": "#20242A"
     },
     "title": {
-      "fontFace": "Segoe UI",
+      "fontFace": "JetBrains Mono",
       "fontSize": 16,
       "color": "#20242A"
     },
     "header": {
-      "fontFace": "Segoe UI",
+      "fontFace": "JetBrains Mono",
       "fontSize": 14,
       "color": "#20242A"
     },
     "label": {
-      "fontFace": "Segoe UI",
+      "fontFace": "JetBrains Mono",
       "fontSize": 12,
       "color": "#56606B"
     }

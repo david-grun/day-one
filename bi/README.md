@@ -28,6 +28,8 @@ Cancelled rows remain available for history but operational measures exclude the
 8. In **View → Themes → Browse for themes**, import [theme.json](theme.json). If a Desktop release rejects a theme setting, remove the unsupported property and retain the listed palette; report theme import still requires actual Desktop verification.
 9. Save a real `DayOne.pbix` through Desktop. Do not rename a text file to `.pbix`.
 
+The owner selected JetBrains Mono. The website bundles its own webfont, while the report theme requests `JetBrains Mono` by name. Power BI does not embed custom font files: install the official font locally on author/viewer machines and verify its OS font name and actual rendering. Server-side exports may use a fallback. Do not assume the iframe inherits the website's bundled font. See [Microsoft's custom-font guidance](https://learn.microsoft.com/en-us/power-bi/visuals/power-bi-visualization-troubleshoot#custom-fonts) and the [official font source](https://github.com/JetBrains/JetBrainsMono).
+
 ### Relationships (all active, single cross-filter direction)
 
 | Parent | Child | Cardinality | Direction |

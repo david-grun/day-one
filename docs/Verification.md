@@ -52,3 +52,29 @@ No commit, push, remote change, account provisioning, paid service, deployment, 
 On 8 October the user supplied two dashboard references in chat. They were inspected and used to refine panel spacing, shadow edges, typography, navigation surfaces and Analytics consistency. Shared tokens and independent Overview columns replace the wider gaps and mismatched text sizes. These changes do not alter workflow/authorization rules. The browser inventory was checked again and remained empty; opening an in-app browser returned Browser is not available. The rendered design and actual keyboard/zoom behavior remain unverified.
 
 The refined CSS parsed successfully with all referenced shared tokens resolved. Calculated new canvas contrast: main text 13.88:1, secondary text 5.70:1; input boundary on white 3.80:1. These calculations cover those declared pairs, not every rendered state. Lint and the final production build passed for the design changes. After restarting the updated production app, authenticated pages, static asset delivery and saved QA history passed `npm run check:persistence`. The Power BI theme background was aligned with the new canvas; actual Desktop import/rendering remains unverified.
+
+A later spacing follow-up removes extra desktop left padding and centered max-width margins, leaving 12px between the sidebar and content at desktop widths. Shared panel padding is now 16px and the canvas/report background is `#F4F5F6`. CSS parsing and the production build passed; calculated canvas contrast is 14.28:1 for primary text and 5.86:1 for secondary text. Browser visual verification remains outstanding.
+
+## Responsive window and device layouts
+
+The next refinement makes layout follow available space when a window is resized/restored/maximized. The 12px desktop sidebar gap and latest palette remain. Main content stays left-aligned with a comfortable maximum width on very wide displays. Native CSS container queries drive one/two/four summary cards, Overview columns, detail sidebars, analytics grids, checklist actions and intake forms. Narrow-screen navigation uses the existing Radix modal dialog, with named content, dismissal and focus restoration; it closes when resizing back above 900px. Hidden desktop navigation uses `display: none` below that boundary. Resizing does not remount forms or reset workflow state.
+
+Filters wrap, touch controls have larger targets, and form controls use readable 16px text on narrow screens. Each wide table has its own labeled keyboard-focusable scroll region rather than widening the page. Dialog height uses the dynamic viewport and can scroll on short displays. The Power BI container resizes; actual third-party report contents and device behavior require separate verification.
+
+CSS parsing, lint, TypeScript and the final production build passed. After restarting the updated app, `npm run check:persistence` passed for authenticated pages, production assets and saved records/history. The served login HTML includes `width=device-width, initial-scale=1`. The browser inventory was empty again. **The viewport matrix below is an intended manual check plan, not a record of rendered/browser tests.**
+
+| CSS viewport width | Intended behavior |
+| --- | --- |
+| 320 / 360 px | Menu drawer; one summary card per row; stacked forms/actions; local table scrolling |
+| 390 / 430 px | Menu drawer; two summary cards when content width permits; stacked workspace panels |
+| 768 px | Drawer; two summary cards; filters/forms adapt to their own available width |
+| 1024 px | Desktop sidebar; typically two summary cards; larger panels stack where sidebar reduces content width |
+| 1280 / 1440 / 1920 px | Desktop sidebar; four summary cards; two Overview/Analytics columns and detail sidebar when content fits |
+
+Verify all primary pages at these widths and at 200% zoom. Also test a short landscape viewport (for example 844×390), portrait/landscape rotation, and a real phone's onscreen keyboard. Drag the window continuously across 900px, including while the menu is open: check closing/backdrop cleanup, focus return and normal page scrolling. Resize with a partially completed Create hire/Edit dialog: input and errors must remain, with every action reachable. Check long names, date filters, table keyboard scrolling and chart rendering. Record actual browser/device results before claiming support was verified on them.
+
+## JetBrains Mono font
+
+The owner selected JetBrains Mono for the interface. The unmodified official variable WOFF2 (113,672 bytes) and OFL license are bundled in `src/app/fonts/`, with the pinned source commit recorded alongside them. Next.js loads the local font; shared UI and Tailwind mono tokens apply it to headings, forms, tables, charts and code. Chart category label space was increased for monospace text. Power BI theme font requests are updated, but font availability and rendering in Desktop/service remain separate, unverified checks. Browser visual/layout checks remain outstanding.
+
+Font-change lint and production build passed. The restarted app served the root font-variable class and generated `@font-face` for weights 100–800; its WOFF2 URL returned HTTP 200 with bytes identical to the bundled official font. This confirms font configuration/delivery, not actual browser appearance.

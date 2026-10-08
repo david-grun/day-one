@@ -4,9 +4,15 @@ Updated 8 October 2026 after local implementation and verification. This records
 
 ## Latest design refinement
 
+**Latest font decision:** the owner explicitly requested JetBrains Mono for the interface. It supersedes earlier system/Segoe UI choices. The official variable WOFF2 is bundled at `src/app/fonts/JetBrainsMono-Variable.woff2`, with its license/source record alongside it, and loaded via `next/font/local` in the root layout. The shared font token covers headings, controls, chart text and code. Power BI's theme requests the same family but actual font availability/rendering there must be verified separately; it cannot inherit the website's font file.
+
 The user subsequently supplied two dashboard screenshots directly in chat and requested tighter panel gaps, soft shadow outlines, a more seamless workspace and consistent fonts/sizing. Those two images were inspected in chat; they are distinct from the earlier three reference files that were unavailable locally. Shared styles now use 12px grid gaps, 16px panel corners, layered shadow edges, a neutral `#F1F2F0` canvas, a single system/Segoe UI font stack, and central 12/14/16px metadata/control/body sizes. Overview cards stack in independent columns to avoid gaps caused by different panel heights. Analytics shares the same surfaces and buttons. Responsive styles preserve text sizes. Direct browser verification remains outstanding because the browser inventory is empty and an in-app tab again returned Browser is not available. Verify the rendered design and core flows before claiming visual/accessibility completion.
 
 ## Copy this into a new chat
+
+Latest responsive follow-up: available-width container queries now adapt cards, Overview/detail/Analytics columns, forms and checklist actions as the window changes. Desktop navigation becomes a Radix modal drawer at 900px and below; resizing back closes it and restores focus. Table overflow is local and keyboard-focusable; dialogs use dynamic viewport height. Drafts remain mounted on resize. Shared colors and 12px sidebar gap are preserved. See the intended viewport matrix in [Verification.md](Verification.md); no real rendered device/resize tests have been performed because browser control remains unavailable.
+
+Latest spacing follow-up: the user asked to bring the left DayOne sidebar closer to Needs attention and soften the background. Desktop content now starts 12px from the sidebar, without centered max-width margins or additional left padding. Shared panel padding is 16px and the latest canvas/report theme color is `#F4F5F6`, superseding the earlier `#F1F2F0` above. Sidebar/heading/attention-row padding is also tighter. Keep these values when continuing the design.
 
 The design refinement passed lint, the final production build, and the restarted production page/asset/persistence check. The refreshed local server was left running at localhost:3000; recheck availability in a new session. Browser visual/keyboard verification remains outstanding.
 

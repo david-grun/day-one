@@ -306,7 +306,7 @@ On 8 October the owner supplied two additional dashboard references in chat and 
 
 | Token | Proposed value | Intended use |
 | --- | --- | --- |
-| Canvas | #F1F2F0 | Main page background, refined from the owner's latest references |
+| Canvas | #F4F5F6 | Light neutral background, refined from the owner's latest feedback |
 | Surface | #FFFFFF | Forms, panels, dialogs, and table surfaces |
 | Primary text | #20242A | Headings, names, and main data |
 | Secondary text | #56606B | Supporting text that must remain readable |
@@ -334,7 +334,9 @@ These are design starting values. Verify the actual foreground/background pairs 
 
 Pending does not mean disabled. Gray unfinished rows must retain readable labels and usable controls. Color is always accompanied by text or a meaningful icon.
 
-Use a system font or a verified available sans-serif font. Default body text is approximately 16 px; table text and labels are approximately 14 px. Use a consistent spacing scale, modest corner radii, subtle panel shadows only where needed, and aligned columns. Desktop is the main workspace; layouts must remain usable on smaller screens and at 200% zoom. Respect reduced-motion preferences. Motion is limited to orientation and feedback; looping effects, cursor trails, parallax, and celebratory interruptions are excluded.
+Use **JetBrains Mono**, explicitly selected by the owner, bundled and self-hosted by the app. Default body text is approximately 16 px; table text and labels are approximately 14 px. Use a consistent spacing scale, modest corner radii, subtle panel shadows only where needed, and aligned columns. Desktop is the main workspace; layouts must remain usable on smaller screens and at 200% zoom. Respect reduced-motion preferences. Motion is limited to orientation and feedback; looping effects, cursor trails, parallax, and celebratory interruptions are excluded.
+
+The owner explicitly requested fluid window resizing and several device/screen sizes. Reflow cards, columns, filters, forms and dialogs to available space; do not shrink the entire interface or essential labels to make it fit. Use a dismissible navigation drawer on narrow screens and keep wide-table scrolling within its panel. Resizing and orientation changes must preserve drafts and saved state. Verify phone/tablet/desktop widths, short landscape heights, keyboard focus and enlarged text; source-level responsiveness alone does not establish tested device support.
 
 ## 11 UX principles and accessibility
 

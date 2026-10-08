@@ -9,6 +9,8 @@ Decision record, 8 October 2026. The owner explicitly requested implementation a
 - Final HR sign-off is separate from required-task completion. The primary interview walkthrough remains in the HR coordinator account.
 - Frontend: React through Next.js App Router, TypeScript, and Tailwind CSS. Use a neutral canvas, white panels, graphite controls, and restrained blue; no indigo or purple accents.
 - Latest design direction: the owner's two additional dashboard screenshots inform tighter 12px panel gaps, soft layered outlines, a floating sidebar and one consistent system font/type scale. Overview columns stack independently. Actual browser verification remains outstanding.
+- Responsive layouts: the owner requested automatic window resizing and several device sizes. Available-width container queries, a narrow-screen navigation drawer, adaptive forms and local table scrolling are implemented; actual device/resize/keyboard behavior remains to verify in a browser.
+- Font: JetBrains Mono, explicitly selected by the owner. The variable webfont is bundled locally with its OFL license and loaded through Next.js; earlier system/Segoe UI font choices are superseded.
 - Hosting target: Vercel, selected by the product owner on 8 October 2026.
 - Backend: TypeScript inside Next.js, selected by the product owner on 8 October 2026.
 - Power BI: a genuine report embedded inside Analytics remains a target. Account eligibility and a working report have not been verified.

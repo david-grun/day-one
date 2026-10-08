@@ -11,13 +11,13 @@ export const DialogTitle = DialogPrimitive.Title;
 export const DialogDescription = DialogPrimitive.Description;
 export const DialogClose = DialogPrimitive.Close;
 
-export function DialogContent({ children, className = "", ...props }: ComponentProps<typeof DialogPrimitive.Content>) {
+export function DialogContent({ children, className = "", closeLabel = "Close dialog", ...props }: ComponentProps<typeof DialogPrimitive.Content> & { closeLabel?: string }) {
   return (
     <DialogPrimitive.Portal>
       <DialogPrimitive.Overlay className="dialog-overlay" />
       <DialogPrimitive.Content className={`dialog-content ${className}`} {...props}>
         {children}
-        <DialogPrimitive.Close className="icon-button dialog-close" aria-label="Close dialog">
+        <DialogPrimitive.Close className="icon-button dialog-close" aria-label={closeLabel}>
           <X size={19} aria-hidden="true" />
         </DialogPrimitive.Close>
       </DialogPrimitive.Content>

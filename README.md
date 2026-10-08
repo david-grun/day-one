@@ -31,6 +31,8 @@ Normal startup never resets records. `npm run demo:seed` preserves existing demo
 
 Seeded history is explicitly fictional. DayOne tracks human preparation; it does not provision accounts, order equipment, or send external notifications. See [demo policies](docs/Demo_Policies.md) and the [interview walkthrough](docs/Interview_Demo.md).
 
+The interface reflows as the window changes: cards and columns follow available space, navigation becomes a drawer on narrower screens, forms stack, and wide tables scroll inside their own panels. Intended phone/tablet/desktop and keyboard/zoom checks are documented in [verification notes](docs/Verification.md); actual device rendering remains unverified.
+
 ```powershell
 npm run export
 # Optional output folder:

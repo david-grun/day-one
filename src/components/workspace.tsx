@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
-import { AlertCircle, ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays, Check, CheckCheck, CheckCircle2, ChevronRight, Circle, Clock3, FileCheck2, History, Home, Layers3, ListChecks, LoaderCircle, LogOut, Menu, Plus, RefreshCw, Search, ShieldCheck, SlidersHorizontal, Users, X, BarChart3, Ban, Pencil, MessageSquare, UserRound, Monitor, BriefcaseBusiness } from "lucide-react";
+import { AlertCircle, ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays, Check, CheckCheck, CheckCircle2, ChevronRight, Circle, Clock3, FileCheck2, History, ListChecks, LoaderCircle, LogOut, Menu, Plus, RefreshCw, Search, ShieldCheck, SlidersHorizontal, Users, X, Ban, Pencil, MessageSquare, UserRound, Monitor, BriefcaseBusiness } from "lucide-react";
 import type { ChangeImpact, Command, CommandResult, HireIntake, HireView, Readiness, Role, TaskStatus, TaskView, UserSummary, WorkspacePayload } from "@/lib/types";
 import { selectTemplate } from "@/lib/templates";
 import { Analytics } from "./analytics";
@@ -176,18 +176,18 @@ export default function Workspace({ initialData, initialPath }: { initialData: W
   }
 
   const navigation = [
-    { href: "/", key: "home", label: "Overview", icon: Home },
-    { href: "/hires", key: "hires", label: "Hires", icon: Users },
-    { href: "/tasks", key: "tasks", label: data.actor.role === "HR" ? "Team tasks" : "My tasks", icon: ListChecks },
-    ...(data.actor.role === "HR" ? [{ href: "/analytics", key: "analytics", label: "Analytics", icon: BarChart3 }] : []),
+    { href: "/", key: "home", label: "Overview" },
+    { href: "/hires", key: "hires", label: "Hires" },
+    { href: "/tasks", key: "tasks", label: data.actor.role === "HR" ? "Team tasks" : "My tasks" },
+    ...(data.actor.role === "HR" ? [{ href: "/analytics", key: "analytics", label: "Analytics" }] : []),
   ];
   const modalHire = modal && "hireId" in modal ? data.hires.find((record) => record.id === modal.hireId) : undefined;
   const modalTask = modal && "taskId" in modal ? modalHire?.tasks.find((task) => task.id === modal.taskId) : undefined;
 
   const sidebarContent = <>
-        <Link href="/" className="brand" onClick={() => setSidebarOpen(false)}><span className="brand-mark"><Layers3 size={23} /></span><span>DayOne</span></Link>
-        <div className="company-switch"><span className="company-avatar">H</span><div><strong>Harborline Studio</strong></div></div>
-        <nav aria-label="Main navigation">{navigation.map(({ href, key, label, icon: Icon }) => <Link key={key} href={href} className={`nav-item ${section === key ? "active" : ""}`} aria-current={section === key ? "page" : undefined} onClick={() => setSidebarOpen(false)}><Icon size={19} /><span>{label}</span>{key === "tasks" && mine.length > 0 && <span className="nav-count">{mine.length}</span>}</Link>)}</nav>
+        <Link href="/" className="brand" onClick={() => setSidebarOpen(false)}><span className="brand-mark" aria-hidden="true">D1</span><span>DayOne</span></Link>
+        <div className="company-switch"><span className="workspace-label">Workspace</span><strong>Harborline Studio</strong></div>
+        <nav aria-label="Main navigation">{navigation.map(({ href, key, label }) => <Link key={key} href={href} className={`nav-item ${section === key ? "active" : ""}`} aria-current={section === key ? "page" : undefined} onClick={() => setSidebarOpen(false)}><span>{label}</span>{key === "tasks" && mine.length > 0 && <span className="nav-count">{mine.length}</span>}</Link>)}</nav>
         <div className="sidebar-bottom"><span className="demo-chip">DEMO WORKSPACE</span><div className="user-profile"><span className="avatar">{initials(data.actor.name)}</span><div><strong>{data.actor.name}</strong><span>{teamLabels[data.actor.role]}</span></div><button className="icon-button" onClick={signOut} aria-label="Sign out" title="Sign out"><LogOut size={17} /></button></div></div>
   </>;
 
@@ -242,11 +242,11 @@ function Overview({ data, onOpen }: { data: WorkspacePayload; onOpen: (modal: Mo
   const myTasks = active.flatMap((hire) => hire.tasks.filter((task) => task.assigneeId === data.actor.id && task.status !== "completed").map((task) => ({ hire, task }))).sort((a, b) => a.task.dueDate.localeCompare(b.task.dueDate));
   return <>
     <div className="page-heading"><div><h1>Overview</h1></div>{data.actor.role === "HR" && <button className="button primary" onClick={() => onOpen({ type: "create" })}><Plus size={18} />Create hire</button>}</div>
-    <div className="summary-strip">
-      <Link href="/hires" className="summary-item"><span>Active hires <Users size={17} /></span><strong>{active.length}</strong></Link>
-      <Link href="/hires?readiness=preparing" className="summary-item"><span>Needs preparation <ListChecks size={17} /></span><strong>{active.filter((hire) => hire.readiness === "preparing").length}</strong></Link>
-      <Link href="/hires?readiness=awaiting_review" className="summary-item"><span>Awaiting HR review <FileCheck2 size={17} /></span><strong>{reviews.length}</strong></Link>
-      <Link href="/hires?readiness=ready" className="summary-item"><span>Ready for first day <ShieldCheck size={17} /></span><strong>{active.filter((hire) => hire.readiness === "ready").length}</strong></Link>
+    <div className="summary-strip" aria-label="Onboarding status">
+      <Link href="/hires" className="summary-item"><span>Active hires</span><strong>{active.length}</strong></Link>
+      <Link href="/hires?readiness=preparing" className="summary-item"><span>Needs preparation</span><strong>{active.filter((hire) => hire.readiness === "preparing").length}</strong></Link>
+      <Link href="/hires?readiness=awaiting_review" className="summary-item"><span>Awaiting HR review</span><strong>{reviews.length}</strong></Link>
+      <Link href="/hires?readiness=ready" className="summary-item"><span>Ready for first day</span><strong>{active.filter((hire) => hire.readiness === "ready").length}</strong></Link>
     </div>
     <div className="overview-grid">
       <div className="overview-column">
@@ -257,7 +257,7 @@ function Overview({ data, onOpen }: { data: WorkspacePayload; onOpen: (modal: Mo
       <section className="panel upcoming-panel"><PanelHeader title="Upcoming starts"><Link className="text-link" href="/hires">View all<ArrowRight size={15} /></Link></PanelHeader>{upcoming.length ? <div className="table-scroll" role="region" tabIndex={0} aria-label="Upcoming starts table"><table><thead><tr><th>Employee</th><th>Start date</th><th>Required work</th><th>Readiness</th></tr></thead><tbody>{upcoming.slice(0, 3).map((hire) => <tr key={hire.id}><td><Link href={`/hires/${hire.id}`} className="person-link">{hire.name}</Link><span className="cell-subtitle">{hire.roleTitle} · {hire.department}</span></td><td className="nowrap">{displayDate(hire.startDate)}</td><td><Progress hire={hire} /></td><td><ReadinessBadge hire={hire} /></td></tr>)}</tbody></table></div> : <Empty title="No upcoming starts" />}</section>
       </div>
       <div className="overview-column">
-      <section className="panel review-queue"><PanelHeader title="Awaiting HR review"><FileCheck2 className="muted" size={20} /></PanelHeader>{reviews.length ? <div className="review-list">{reviews.slice(0, 3).map((hire) => <div className="review-row" key={hire.id}><div className="review-person"><span className="avatar avatar-blue">{initials(hire.name)}</span><div><Link href={`/hires/${hire.id}`} className="person-link">{hire.name}</Link><span>{hire.reviewerName} · {waiting(hire, data.now)}</span></div></div>{data.actor.id === hire.reviewerId ? <button className="button small" onClick={() => onOpen({ type: "review", hireId: hire.id })}>Review<ArrowRight size={14} /></button> : <Link href={`/hires/${hire.id}`} className="text-link">View<ArrowUpRight size={14} /></Link>}</div>)}</div> : <Empty title="No reviews waiting" />}<Link href="/hires?readiness=awaiting_review" className="panel-link">View all<ArrowRight size={15} /></Link></section>
+      <section className="panel review-queue"><PanelHeader title="Awaiting HR review"><FileCheck2 className="muted" size={20} /></PanelHeader>{reviews.length ? <div className="review-list">{reviews.slice(0, 3).map((hire) => <div className="review-row" key={hire.id}><div className="review-person"><span className="avatar avatar-blue">{initials(hire.name)}</span><div><Link href={`/hires/${hire.id}`} className="person-link">{hire.name}</Link><span>{hire.reviewerName} · {waiting(hire, data.now)}</span></div></div>{data.actor.id === hire.reviewerId ? <button className="text-button" onClick={() => onOpen({ type: "review", hireId: hire.id })}>Review<ArrowRight size={14} /></button> : <Link href={`/hires/${hire.id}`} className="text-link">View<ArrowUpRight size={14} /></Link>}</div>)}</div> : <Empty title="No reviews waiting" />}<Link href="/hires?readiness=awaiting_review" className="panel-link">View all<ArrowRight size={15} /></Link></section>
       <section className="panel my-work-panel"><PanelHeader title={data.actor.role === "HR" ? "My HR tasks" : "My preparation tasks"}><span className="badge neutral">{myTasks.length} open</span></PanelHeader>{myTasks.length ? <div className="my-task-list">{myTasks.slice(0, 3).map(({ hire, task }) => <div className="my-task-row" key={task.id}><span className={`task-marker ${task.blocked ? "warning" : task.status === "in_progress" ? "blue" : ""}`}>{task.blocked ? <Clock3 size={17} /> : <Circle size={17} />}</span><div><strong>{task.title}</strong><Link href={`/hires/${hire.id}`}>{hire.name}</Link><span className={task.overdue ? "deadline-overdue" : "muted"}>Due {displayDate(task.dueDate)}{task.overdue ? " · Overdue" : ""}</span>{task.blocker && <small className="blocker-inline">{task.blocker}</small>}</div><button className="icon-button" aria-label={`Open ${task.title} for ${hire.name}`} onClick={() => onOpen({ type: task.templateKey === "requirements" ? "requirements" : "task", hireId: hire.id, taskId: task.id })}><ArrowUpRight size={18} /></button></div>)}</div> : <Empty title="No open tasks assigned to you" />}<Link href="/tasks?owner=me" className="panel-link">View all<ArrowRight size={15} /></Link></section>
       </div>
     </div>

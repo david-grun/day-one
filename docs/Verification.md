@@ -1,0 +1,54 @@
+# DayOne verification
+
+Observed locally on 8 October 2026, Windows, Node 22.12.0. Recommended setup uses Node 22.13 or a newer supported LTS because an ESLint development dependency declares that minimum. No hosted Supabase credentials or Power BI account/report were available.
+
+## Passed checks
+
+| Check | Observed result |
+| --- | --- |
+| `npm run typecheck` | Passed, no TypeScript errors |
+| `npm run lint` | Passed, no ESLint errors or warnings |
+| `npm test` | Eight tests passed; zero failed/skipped |
+| `npm run build` | Optimized Next.js production build passed |
+| `npm run check:server` | Real production HTTP workflow passed with cookie-authenticated HR, IT and manager accounts |
+| `npm run check:persistence` | After stopping/restarting production server: hire, eight tasks, invalidated approval and approval history persisted; authenticated pages and production assets returned HTTP 200 |
+| `npm run export` | Complete six-table snapshot exported from the saved database, not separate synthetic analytics |
+| `npm audit --omit=dev` | Zero reported production dependency advisories at check time |
+
+The automated tests cover Manila overdue boundaries; required versus optional/taskless readiness; empty and inclusive filter cohorts; review timing; app/export reconciliation; Microsoft embed URL restrictions; real password sessions, disabled public signup and server-owned roles; inactive-account rejection; transactional creation/retry and concurrent changes; ownership/dependencies; stale approval, correction cascades and history; cancellation; seed/reset preservation; and denied PostgreSQL access under simulated Supabase `anon`/`authenticated` roles.
+
+The HTTP check created a fictional Software Engineer, retried creation without duplicate tasks, rejected HR completing IT work and IT completing blocked access, confirmed manager requirements, completed preparation through actual team accounts, observed Awaiting HR review, approved as the assigned HR reviewer, reconciled approval in reporting, then corrected required work and verified approval invalidation and history. QA hires remain cancelled historical records; the 25 seeded scenarios were preserved. Server-rendered pages and static asset delivery were checked; this does not prove browser interactions.
+
+An isolated in-memory PostgreSQL smoke test loaded **500 active hires / 4,000 tasks**. The final aggregate run created 476 additional hires in 1,800 ms, loaded the workspace in 543 ms and calculated metrics in 7 ms. This is a local smoke check, not a hosted latency or capacity guarantee. The current compact workspace reads all scoped demo records; paginate and aggregate in SQL if actual use warrants it.
+
+The final local CSV snapshot is `2026-10-08T03:38:45.871Z`, containing **27 hires / 216 tasks**: 25 seeded hires and two cancelled HTTP QA hires. File totals include cancelled history; active operational totals exclude it. Exports/database/secrets are ignored by Git. This timestamp is not a Power BI service refresh time.
+
+Full `npm audit` reports five high-severity development dependency entries originating from one `braces` advisory through Next.js ESLint's glob dependency chain. The installed compatible lint configuration has no patched replacement in that reported chain; npm proposes an older major configuration. Production dependencies report zero. Recheck the advisory when a compatible update is available; no forced major downgrade was applied.
+
+## Direct browser checks still required
+
+The available browser-control inventory contained no browser surface, and attempts to open an in-app or Chrome tab returned Browser is not available. Consequently visual layout, actual keyboard flows, zoom, screen-reader behavior, client chart rendering, cross-account refresh and modal/error interactions have **not** been verified in a browser. No WCAG conformance or user-testing result is claimed. The missing reference images were interpreted from their written descriptions.
+
+With [localhost:3000](http://localhost:3000) running, use the [HR walkthrough](Interview_Demo.md):
+
+1. Sign in as Mara using the demo account picker. With keyboard only, create a fictional hire, inspect the task preview, save, and reach the hire detail. Verify visible focus, field labels, announced errors and retained input after a failed save.
+2. Find Eli Ramos's prerequisite blocker and owner. Confirm dependency actions explain why they are unavailable. Check task table filters, detail navigation and return preserve context.
+3. On Sofia Dela Cruz, complete the last HR task, inspect the review evidence and approve. Confirm required completion and final readiness remain visibly distinct and analytics updates. Test dialog Escape/cancel/focus return, and a reasoned correction with its consequence preview.
+4. Repeat at 200% zoom and a narrow viewport. Confirm task names, owner, deadline and actions remain usable, charts have readable tables, and scrolling/navigation do not clip controls. Check reduced-motion behavior.
+5. Verify other signed-in team accounts see their assigned work. Keep another browser account open, update a task, and verify the visible workspace refreshes without disturbing an open draft.
+
+Central text/background contrast ratios calculated from the declared tokens pass 4.5:1 for ordinary text; the declared input boundary pair passes 3:1. Actual rendered focus, component states and chart/report accessibility still require the checks above.
+
+## External prerequisites
+
+**Supabase/Vercel:** implementation has migrations, a PostgreSQL pool connection and environment guidance, but actual hosted connection, migration privileges, sign-in, redeployment persistence, region/connection limits and provider account capabilities remain unverified. Follow [Supabase_Vercel.md](Supabase_Vercel.md). Better Auth owns DayOne authentication; Supabase Auth is not used.
+
+**Power BI:** export code, schema dictionary, DAX, theme, report layout and validated embed container are implemented. Actual Desktop import/DAX/theme/report, service license/tenant permission, publication, Microsoft embed URL, rendered report, slicers, totals and refresh remain unverified. Follow [the assembly kit](../bi/README.md). Native analytics and export remain usable while those prerequisites are outstanding.
+
+No commit, push, remote change, account provisioning, paid service, deployment, external notification or report publication was performed.
+
+## Subsequent design refinement
+
+On 8 October the user supplied two dashboard references in chat. They were inspected and used to refine panel spacing, shadow edges, typography, navigation surfaces and Analytics consistency. Shared tokens and independent Overview columns replace the wider gaps and mismatched text sizes. These changes do not alter workflow/authorization rules. The browser inventory was checked again and remained empty; opening an in-app browser returned Browser is not available. The rendered design and actual keyboard/zoom behavior remain unverified.
+
+The refined CSS parsed successfully with all referenced shared tokens resolved. Calculated new canvas contrast: main text 13.88:1, secondary text 5.70:1; input boundary on white 3.80:1. These calculations cover those declared pairs, not every rendered state. Lint and the final production build passed for the design changes. After restarting the updated production app, authenticated pages, static asset delivery and saved QA history passed `npm run check:persistence`. The Power BI theme background was aligned with the new canvas; actual Desktop import/rendering remains unverified.

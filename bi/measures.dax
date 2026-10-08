@@ -1,0 +1,65 @@
+// Create each measure separately in Power BI Desktop: Modeling > New measure.
+// Import booleans as True/False and numeric columns as whole/decimal numbers.
+// Relationships filter one way from hires/teams to their child tables.
+
+Active Hires =
+COALESCE(CALCULATE(COUNTROWS(hires), KEEPFILTERS(hires[lifecycle] = "active")), 0)
+
+Ready Hires =
+COALESCE(CALCULATE(COUNTROWS(hires), KEEPFILTERS(hires[lifecycle] = "active"), KEEPFILTERS(hires[readiness_state] = "ready"), KEEPFILTERS(hires[signoff_valid] = TRUE()), KEEPFILTERS(hires[required_tasks] > 0)), 0)
+
+Readiness Rate =
+DIVIDE([Ready Hires], [Active Hires])
+
+Awaiting HR Review =
+COALESCE(CALCULATE(COUNTROWS(hires), KEEPFILTERS(hires[lifecycle] = "active"), KEEPFILTERS(hires[readiness_state] = "awaiting_review")), 0)
+
+At Risk Hires =
+COALESCE(CALCULATE(COUNTROWS(hires), KEEPFILTERS(hires[lifecycle] = "active"), KEEPFILTERS(hires[at_risk] = TRUE())), 0)
+
+Required Tasks =
+COALESCE(CALCULATE(COUNTROWS(tasks), KEEPFILTERS(hires[lifecycle] = "active"), KEEPFILTERS(tasks[required] = TRUE())), 0)
+
+Completed Required Tasks =
+COALESCE(CALCULATE(COUNTROWS(tasks), KEEPFILTERS(hires[lifecycle] = "active"), KEEPFILTERS(tasks[required] = TRUE()), KEEPFILTERS(tasks[status] = "completed")), 0)
+
+Required Task Completion Rate =
+DIVIDE([Completed Required Tasks], [Required Tasks])
+
+Overdue Tasks =
+COALESCE(CALCULATE(COUNTROWS(tasks), KEEPFILTERS(hires[lifecycle] = "active"), KEEPFILTERS(tasks[status] <> "completed"), KEEPFILTERS(tasks[overdue] = TRUE())), 0)
+
+Blocked Tasks =
+COALESCE(CALCULATE(COUNTROWS(tasks), KEEPFILTERS(hires[lifecycle] = "active"), KEEPFILTERS(tasks[blocked] = TRUE())), 0)
+
+Average Current Review Wait Hours =
+CALCULATE(AVERAGE(hires[review_wait_hours]), KEEPFILTERS(hires[lifecycle] = "active"), KEEPFILTERS(hires[readiness_state] = "awaiting_review"))
+
+Current Review Wait Samples =
+COALESCE(CALCULATE(COUNT(hires[review_wait_hours]), KEEPFILTERS(hires[lifecycle] = "active"), KEEPFILTERS(hires[readiness_state] = "awaiting_review")), 0)
+
+Average Signoff Turnaround Hours =
+CALCULATE(AVERAGE(review_episodes[turnaround_hours]), KEEPFILTERS(hires[lifecycle] = "active"), KEEPFILTERS(review_episodes[outcome] = "approved"))
+
+Approved Review Episode Samples =
+COALESCE(CALCULATE(COUNT(review_episodes[turnaround_hours]), KEEPFILTERS(hires[lifecycle] = "active"), KEEPFILTERS(review_episodes[outcome] = "approved")), 0)
+
+Average Completion Hours =
+CALCULATE(AVERAGE(tasks[completion_hours]), KEEPFILTERS(hires[lifecycle] = "active"), KEEPFILTERS(tasks[status] = "completed"))
+
+Completion Duration Samples =
+COALESCE(CALCULATE(COUNT(tasks[completion_hours]), KEEPFILTERS(hires[lifecycle] = "active"), KEEPFILTERS(tasks[status] = "completed")), 0)
+
+Bottleneck Row =
+VAR IsActive = SELECTEDVALUE(hires[lifecycle]) = "active"
+VAR IsIncomplete = SELECTEDVALUE(tasks[status]) <> "completed"
+VAR NeedsAttention = SELECTEDVALUE(tasks[overdue], FALSE()) || SELECTEDVALUE(tasks[blocked], FALSE())
+RETURN IF(IsActive && IsIncomplete && NeedsAttention, 1, 0)
+
+Source Snapshot UTC =
+SELECTEDVALUE(metadata[snapshot_at], "Multiple snapshots: re-export all tables together")
+
+// Formatting: rates Percentage, counts Whole number, hours Decimal (1 place).
+// DIVIDE returns BLANK for an empty denominator. Display N/A (or clearly labeled --), never 0%.
+// Bottleneck Row goes in the visual filter (=1) of a tasks-grain table containing
+// hires[lifecycle], tasks[task_id], tasks[status], tasks[overdue], tasks[blocked].

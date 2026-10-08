@@ -1,0 +1,10 @@
+node_modules/
+.next/
+.env*
+!.env.example
+.dayone/
+exports/
+bi/export/
+*.tsbuildinfo
+test-results/
+playwright-report/

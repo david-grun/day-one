@@ -1,0 +1,50 @@
+{
+  "name": "dayone",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "demo:seed": "tsx scripts/seed.ts",
+    "demo:reset": "tsx scripts/seed.ts --reset-demo",
+    "setup": "tsx scripts/setup.ts",
+    "export": "tsx scripts/export.ts",
+    "test": "tsx --test tests/*.test.ts",
+    "check:server": "tsx scripts/check-server.ts",
+    "check:persistence": "tsx scripts/check-server.ts --persistence-only"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "0.5.8",
+    "@radix-ui/react-dialog": "^1.2.0",
+    "@tailwindcss/postcss": "4.2.1",
+    "better-auth": "1.7.7",
+    "drizzle-orm": "0.45.3",
+    "lucide-react": "^0.577.0",
+    "next": "16.4.0",
+    "pg": "^8.16.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "recharts": "^3.8.0",
+    "tailwindcss": "4.2.1",
+    "zod": "^4.3.6"
+  },
+  "overrides": {
+    "@esbuild-kit/core-utils": { "esbuild": "^0.28.2" }
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.15.6",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "drizzle-kit": "^0.31.10",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "16.4.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

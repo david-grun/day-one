@@ -1,0 +1,36 @@
+{
+  "name": "DayOne",
+  "dataColors": [
+    "#0067A5",
+    "#56606B",
+    "#167447",
+    "#855500",
+    "#B42318",
+    "#20242A"
+  ],
+  "background": "#F1F2F0",
+  "foreground": "#20242A",
+  "tableAccent": "#0067A5",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Segoe UI",
+      "fontSize": 28,
+      "color": "#20242A"
+    },
+    "title": {
+      "fontFace": "Segoe UI",
+      "fontSize": 16,
+      "color": "#20242A"
+    },
+    "header": {
+      "fontFace": "Segoe UI",
+      "fontSize": 14,
+      "color": "#20242A"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 12,
+      "color": "#56606B"
+    }
+  }
+}

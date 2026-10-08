@@ -13,22 +13,22 @@
   "tableAccent": "#006FA6",
   "textClasses": {
     "callout": {
-      "fontFace": "JetBrains Mono",
+      "fontFace": "SF Mono",
       "fontSize": 28,
       "color": "#17212B"
     },
     "title": {
-      "fontFace": "JetBrains Mono",
+      "fontFace": "SF Mono",
       "fontSize": 16,
       "color": "#17212B"
     },
     "header": {
-      "fontFace": "JetBrains Mono",
+      "fontFace": "SF Mono",
       "fontSize": 14,
       "color": "#17212B"
     },
     "label": {
-      "fontFace": "JetBrains Mono",
+      "fontFace": "SF Mono",
       "fontSize": 12,
       "color": "#485867"
     }

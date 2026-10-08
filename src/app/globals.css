@@ -23,7 +23,7 @@
   --grid-gap: 12px;
   --panel-padding: 16px;
   --sidebar-width: clamp(208px, 15vw, 240px);
-  --font-ui: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  --font-ui: "SFMono-Regular", "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   --type-caption: 12px;
   --type-control: 14px;
   --type-body: 16px;
@@ -144,9 +144,8 @@ svg { flex-shrink: 0; }
 .panel-header .eyebrow { font-size: var(--type-caption); margin-bottom: 6px; }
 .panel-header h2 { font-size: var(--type-body); }
 .panel-header > svg { color: var(--secondary); }
-.panel-footnote.policy-details { display: block; }
-.policy-details summary, .demo-scenario summary, .chart-data summary { cursor: pointer; }
-.policy-details p, .demo-scenario p { margin-top: 8px; }
+.demo-scenario summary, .chart-data summary { cursor: pointer; }
+.demo-scenario p { margin-top: 8px; }
 .chart-data { margin-top: 12px; font-size: var(--type-control); color: var(--secondary); }
 .chart-data > .table-scroll { margin-top: 8px; color: var(--text); }
 .panel-footnote { display: flex; align-items: center; gap: 7px; border-top: 1px solid var(--border); padding: 12px var(--panel-padding); font-size: var(--type-caption); color: var(--secondary); line-height: 1.6; }

@@ -1,16 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
-
-const jetBrainsMono = localFont({
-  src: "./fonts/JetBrainsMono-Variable.woff2",
-  weight: "100 800",
-  style: "normal",
-  display: "swap",
-  variable: "--font-jetbrains-mono",
-  fallback: ["monospace"],
-  adjustFontFallback: false,
-});
 
 export const metadata: Metadata = {
   title: "DayOne · First-day readiness",
@@ -19,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <html lang="en" className={jetBrainsMono.variable}><body>{children}</body></html>;
+  return <html lang="en"><body>{children}</body></html>;
 }

@@ -73,10 +73,10 @@ CSS parsing, lint, TypeScript and the final production build passed. After resta
 
 Verify all primary pages at these widths and at 200% zoom. Also test a short landscape viewport (for example 844×390), portrait/landscape rotation, and a real phone's onscreen keyboard. Drag the window continuously across 900px, including while the menu is open: check closing/backdrop cleanup, focus return and normal page scrolling. Resize with a partially completed Create hire/Edit dialog: input and errors must remain, with every action reachable. Check long names, date filters, table keyboard scrolling and chart rendering. Record actual browser/device results before claiming support was verified on them.
 
-## JetBrains Mono font
+## SF Mono font
 
-The owner selected JetBrains Mono for the interface. The unmodified official variable WOFF2 (113,672 bytes) and OFL license are bundled in `src/app/fonts/`, with the pinned source commit recorded alongside them. Next.js loads the local font; shared UI and Tailwind mono tokens apply it to headings, forms, tables, charts and code. Chart category label space was increased for monospace text. Power BI theme font requests are updated, but font availability and rendering in Desktop/service remain separate, unverified checks. Browser visual/layout checks remain outstanding.
+The owner changed the interface to SF Mono. The app and Power BI theme request the operating-system family and use a native monospace fallback when it is unavailable. SF Mono was not found in the current Windows font directories, so local rendering uses Consolas. No SF Mono file was downloaded or bundled.
 
-Font-change lint and production build passed. The restarted app served the root font-variable class and generated `@font-face` for weights 100–800; its WOFF2 URL returned HTTP 200 with bytes identical to the bundled official font. This confirms font configuration/delivery, not actual browser appearance.
+The SF Mono-first and reduced-density pass completed lint, TypeScript, a production build, and the read-only restart/persistence page check successfully.
 
 The later high-contrast theme and concise-copy pass also passed lint, TypeScript, a production build, and the read-only restart/persistence page check. The browser inventory was still empty, so the charcoal sidebar, blue active states, panel contrast, responsive layouts, and copy density remain to be inspected in a real browser.

@@ -97,7 +97,7 @@ svg { flex-shrink: 0; }
 .topbar-left strong { color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .business-date { display: inline-flex; align-items: center; gap: 8px; color: var(--secondary); font-size: var(--type-control); white-space: nowrap; }
 .business-date span { padding-left: 3px; color: #6b747e; font-size: var(--type-caption); }
-.main-content { margin: 0; width: 100%; max-width: 1920px; min-width: 0; padding: 10px 12px 0 0; container: workspace / inline-size; }
+.main-content { margin: 0; width: 100%; max-width: 1920px; min-width: 0; padding: 10px 12px calc(24px + env(safe-area-inset-bottom)) 0; container: workspace / inline-size; }
 .page-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; }
 .page-heading > div { min-width: 0; flex: 1 1 260px; }
 .page-heading p { color: var(--secondary); font-size: var(--type-control); margin-top: 6px; }
@@ -469,7 +469,7 @@ tbody tr:hover { background: #fdfdfc; }
   .desktop-sidebar { display: none; }
   .main-shell { margin-left: 0; }
   .mobile-menu { display: inline-flex; min-width: 44px; min-height: 44px; margin-left: -6px; }
-  .main-content { padding: 10px 12px 0; }
+  .main-content { padding: 10px 12px calc(24px + env(safe-area-inset-bottom)); }
   .topbar { padding: 0 12px; gap: 10px; }
   .topbar-left { gap: 8px; }
   .topbar-left > span { display: none; }

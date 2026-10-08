@@ -13,22 +13,22 @@
   "tableAccent": "#0067A5",
   "textClasses": {
     "callout": {
-      "fontFace": "SF Mono",
+      "fontFace": "Inter",
       "fontSize": 28,
       "color": "#20242A"
     },
     "title": {
-      "fontFace": "SF Mono",
+      "fontFace": "Inter",
       "fontSize": 16,
       "color": "#20242A"
     },
     "header": {
-      "fontFace": "SF Mono",
+      "fontFace": "Inter",
       "fontSize": 14,
       "color": "#20242A"
     },
     "label": {
-      "fontFace": "SF Mono",
+      "fontFace": "Inter",
       "fontSize": 12,
       "color": "#56606B"
     }

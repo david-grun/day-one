@@ -6,11 +6,11 @@ Updated 8 October 2026 after local implementation and verification. This records
 
 **Latest theme decision:** the owner rolled back the dark/blue dashboard treatment. The current interface restores the earlier white sidebar and panels, soft neutral canvas, graphite active controls, restrained status colors, rounded cards and subtle shadow outlines. Keep the responsive structure.
 
-The white-theme rollback keeps SF Mono-first typography and the reduced-density copy. It passed lint, TypeScript, the production build and the read-only restart/persistence page check. The app was left running at `http://localhost:3000`. Browser automation remained unavailable, so visual inspection across viewport sizes is still a manual check.
+The white-theme rollback keeps the reduced-density copy. Inter now replaces the earlier monospace choice for readability. Lint, TypeScript, and the production build passed, and the app was left running at `http://localhost:3000`. Browser automation remained unavailable, so visual inspection across viewport sizes is still a manual check.
 
 **Latest copy decision:** the owner requested only necessary, non-repetitive screen text. Page headings and summary cards are concise; repeated sidebar/footer explanations and marketing copy are removed. Overview queues show at most three records and link to their full views. Demo accounts/scenarios, chart data tables and Power BI setup/refresh guidance use native expandable sections. Keep task context, evidence, review eligibility, errors and correction/cancellation consequences.
 
-**Latest font decision:** the owner changed the interface to SF Mono. The app now requests `SFMono-Regular` / `SF Mono` from the operating system, followed by native monospace fallbacks. SF Mono is not installed on the current Windows machine, so it currently renders with Consolas locally. No unlicensed SF Mono file is bundled. Power BI requests the same family but must also find it on the author/viewer machine.
+**Latest font decision:** the owner changed the interface to Inter and prioritized readability. Next.js loads and self-hosts the variable font through `next/font`, with a system sans-serif fallback. The Power BI theme requests Inter by name and must be verified separately in Desktop/service.
 
 ## Copy this into a new chat
 

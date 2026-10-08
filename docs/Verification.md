@@ -73,10 +73,10 @@ CSS parsing, lint, TypeScript and the final production build passed. After resta
 
 Verify all primary pages at these widths and at 200% zoom. Also test a short landscape viewport (for example 844×390), portrait/landscape rotation, and a real phone's onscreen keyboard. Drag the window continuously across 900px, including while the menu is open: check closing/backdrop cleanup, focus return and normal page scrolling. Resize with a partially completed Create hire/Edit dialog: input and errors must remain, with every action reachable. Check long names, date filters, table keyboard scrolling and chart rendering. Record actual browser/device results before claiming support was verified on them.
 
-## SF Mono font
+## Inter font
 
-The owner changed the interface to SF Mono. The app and Power BI theme request the operating-system family and use a native monospace fallback when it is unavailable. SF Mono was not found in the current Windows font directories, so local rendering uses Consolas. No SF Mono file was downloaded or bundled.
+The owner changed the interface to Inter for readability. Next.js loads and self-hosts the variable font through `next/font`, with a system sans-serif fallback. The Power BI theme requests Inter by name; Desktop/service rendering remains a separate check.
 
-The SF Mono-first and reduced-density pass completed lint, TypeScript, a production build, and the read-only restart/persistence page check successfully.
+The Inter change completed lint, TypeScript, and a production build successfully.
 
 The owner later rolled back the dark/blue theme while retaining the concise-copy pass. Lint, TypeScript, the production build and the read-only restart/persistence page check passed. The restored white sidebar, white panels, graphite controls, responsive layouts and copy density remain to be inspected in a real browser.

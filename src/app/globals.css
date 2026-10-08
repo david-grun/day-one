@@ -20,7 +20,7 @@
   --grid-gap: 12px;
   --panel-padding: 16px;
   --sidebar-width: clamp(208px, 15vw, 240px);
-  --font-ui: "SFMono-Regular", "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --font-ui: var(--font-inter), Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --type-caption: 12px;
   --type-control: 14px;
   --type-body: 16px;

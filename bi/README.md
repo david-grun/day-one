@@ -28,7 +28,7 @@ Cancelled rows remain available for history but operational measures exclude the
 8. In **View → Themes → Browse for themes**, import [theme.json](theme.json). If a Desktop release rejects a theme setting, remove the unsupported property and retain the listed palette; report theme import still requires actual Desktop verification.
 9. Save a real `DayOne.pbix` through Desktop. Do not rename a text file to `.pbix`.
 
-The owner selected SF Mono. The website requests the operating-system font and uses a native monospace fallback when it is unavailable. Power BI does not embed custom font files: install a properly licensed SF Mono copy on author/viewer machines and verify its OS font name and actual rendering. Do not assume the iframe inherits the website font.
+The owner selected Inter for readability. The website self-hosts it through Next.js. Power BI requests `Inter` by name and does not inherit the website font, so verify that Power BI Desktop and report viewers render it or use their available fallback.
 
 ### Relationships (all active, single cross-filter direction)
 

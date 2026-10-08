@@ -150,15 +150,15 @@ svg { flex-shrink: 0; }
 .summary-item strong { display: block; margin-top: 9px; font-size: var(--type-metric); letter-spacing: -1px; line-height: 1.15; font-variant-numeric: tabular-nums; font-weight: 650; }
 .overview-column { display: grid; gap: var(--grid-gap); align-content: start; min-width: 0; }
 .overview-grid { display: grid; grid-template-columns: minmax(0,1fr); gap: var(--grid-gap); align-items: start; }
-.attention-row { display: flex; align-items: flex-start; gap: 12px; margin: 0 8px 6px; padding: 10px 8px; border-radius: 10px; background: #f8f9fa; transition: background .15s; }
-.attention-row:first-child { border-top: 0; }
-.attention-row:hover .attention-body strong { color: var(--accent); }
-.attention-row > svg { margin-top: 12px; color: #7d8791; }
-.attention-body { min-width: 0; flex: 1; }
-.attention-body > div { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; }
-.attention-body strong { font-size: var(--type-control); }
-.attention-body p { color: var(--secondary); font-size: var(--type-caption); line-height: 1.6; margin-top: 5px; }
-.attention-meta { display: block; font-size: var(--type-caption); color: var(--secondary); margin-top: 8px; }
+.attention-table { min-width: 760px; table-layout: fixed; }
+.attention-table th:nth-child(1) { width: 20%; }
+.attention-table th:nth-child(2) { width: 27%; }
+.attention-table th:nth-child(3) { width: 15%; }
+.attention-table th:nth-child(4) { width: 20%; }
+.attention-table th:nth-child(5) { width: 11%; }
+.attention-table th:nth-child(6) { width: 7%; }
+.attention-table td { padding-top: 12px; padding-bottom: 12px; vertical-align: top; }
+.attention-action { display: block; font-size: var(--type-control); font-weight: 500; line-height: 1.5; }
 .blocker-inline { display: block; font-size: var(--type-caption); color: var(--warning); line-height: 1.6; margin-top: 5px; }
 .review-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 14px var(--panel-padding); border-top: 1px solid #ebedef; }
 .review-row:first-child { padding-top: 5px; border-top: 0; }
